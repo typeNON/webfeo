@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="FeO tatto Lab" content="feo tatto lab yanı feo dövme studyosu olarak sızlere hıjyenık ve sterıl bır dovme seansı sunuyoruz">
+    <title>FeO TATTO LAB | Tattoo Studio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://unpkg.com/scrollreveal"></script>
+    
+    <style>
+
+
+
+/* İNKHİDE SHOP ÖZEL TASARIM */
+.shop-header {
+    text-align: left;
+    margin-bottom: 40px;
+    border-left: 4px solid var(--accent-color);
+    padding-left: 20px;
+}
+
+.shop-intro p {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.6);
+    max-width: 450px;
+    margin-top: 10px;
+    text-transform: none; /* Açıklama metni küçük harf kalabilsin diye */
+}
+
+.shop-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: var(--transition);
+    text-decoration: none;
+    color: white;
+    display: flex;
+    flex-direction: column;
+}
+
+.shop-card:hover {
+    transform: translateY(-10px);
+    background: rgba(255, 255, 255, 0.08);
+    border-color: var(--accent-color);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+}
+
+.shop-img-container {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1/1;
+}
+
+.shop-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: var(--accent-color);
+    color: var(--primary-bg);
+    font-size: 0.6rem;
+    font-weight: 900;
+    padding: 5px 10px;
+    border-radius: 4px;
+    letter-spacing: 1px;
+}
+
+.shop-info {
+    padding: 20px;
+}
+
+.shop-info h4 {
+    font-family: 'Montserrat';
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+    letter-spacing: 1px;
+}
+
+.shop-info p {
+    font-size: 0.75rem;
+    opacity: 0.5;
+    margin-bottom: 20px;
+}
+
+.shop-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding-top: 15px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ÜRÜN GALERİSİ TASARIMI */
+.shop-section { margin: 40px 0 60px 0; }
+.shop-grid { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); 
+    gap: 15px; 
+}
+.shop-card {
+    text-decoration: none;
+    color: white;
+    background: var(--card-bg);
+    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: var(--transition);
+    backdrop-filter: blur(10px);
+    display: block; /* Kartın tamamını tıklanabilir yapar */
+}
+.shop-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--accent-color);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+.shop-img-container {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1/1;
+    overflow: hidden;
+}
+.shop-img-container img {
+    width: 100%; height: 100%; object-fit: cover; transition: 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+.shop-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.7);
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; transition: 0.3s;
+}
+.shop-overlay span {
+    font-family: 'Montserrat'; font-weight: 900; font-size: 0.7rem;
+    border: 1px solid white; padding: 8px 15px; letter-spacing: 1px;
+}
+.shop-card:hover .shop-overlay { opacity: 1; }
+.shop-card:hover .shop-img-container img { transform: scale(1.1); }
+
+.shop-info { padding: 12px; border-top: 1px solid rgba(255,255,255,0.05); }
+.shop-info h4 { font-family: 'Montserrat'; font-size: 0.75rem; margin-bottom: 4px; color: var(--accent-color); }
+.shop-info p { font-size: 0.65rem; opacity: 0.6; text-transform: uppercase; }
+
+@media (max-width: 480px) {
+    .shop-grid { grid-template-columns: repeat(2, 1fr); } /* Mobilde yan yana 2 ürün */
+}
+
+
+
+
+
+
+        :root {
+            --primary-bg: #000000;
+            --accent-color: #ffffff;
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--primary-bg);
+            color: var(--accent-color);
+            font-family: 'Roboto', sans-serif;
+            background-image: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.9)), url('img/wallpaper.jpeg');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            position: relative;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .container { width: 90%; max-width: 500px; margin: 0 auto; padding: 40px 0 80px 0; }
+
+        header { text-align: left; margin-bottom: 50px; border-left: 4px solid var(--accent-color); padding-left: 15px; }
+        header h1 { font-family: 'Montserrat', sans-serif; font-size: 2.8rem; line-height: 0.9; margin-bottom: 15px; }
+        
+        .about-box { margin-bottom: 40px; }
+        .about-box p { 
+            font-family: 'Montserrat', sans-serif; font-size: 1rem; font-weight: 700; 
+            text-transform: uppercase; line-height: 1.4; color: rgba(255,255,255,0.8);
+        }
+
+        h2 { font-family: 'Montserrat', sans-serif; font-size: 1.3rem; margin-bottom: 25px; text-transform: uppercase; letter-spacing: 1px; }
+
+        /* Sanatçı Kartları */
+        .artist-list { margin-bottom: 40px; }
+        .artist-card {
+            background: var(--card-bg);
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 15px; margin-bottom: 15px;
+            display: flex; align-items: center; border-radius: 12px;
+            transition: var(--transition); backdrop-filter: blur(10px);
+        }
+        .artist-card:hover { transform: translateY(-5px); border-color: var(--accent-color); background: rgba(255,255,255,0.12); }
+        .artist-img { width: 65px; height: 65px; border-radius: 50%; border: 2px solid var(--accent-color); object-fit: cover; margin-right: 15px; }
+        .artist-info { flex-grow: 1; }
+        .artist-info h3 { font-family: 'Montserrat', sans-serif; font-size: 1rem; }
+        .social-icons { display: flex; gap: 20px; margin-top: 8px; }
+        .social-icons a { color: var(--accent-color); font-size: 1.3rem; text-decoration: none; transition: 0.3s; }
+
+        /* Galeri Bölümü */
+        .gallery-wrapper {
+            width: 100vw; margin-left: calc(-50vw + 50%); overflow: hidden; padding: 20px 0; position: relative;
+        }
+        .gallery-container { display: flex; gap: 15px; width: max-content; animation: scroll 30s linear infinite; }
+        .gallery-wrapper:hover .gallery-container { animation-play-state: paused; }
+        .gallery-item {
+            width: 250px; aspect-ratio: 4/5; overflow: hidden; border-radius: 12px;
+            background: #111; border: 1px solid rgba(255,255,255,0.1); flex-shrink: 0; transition: var(--transition);
+        }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%) brightness(0.7); transition: 0.6s ease; }
+        .gallery-item:hover { transform: scale(1.05); border-color: #fff; box-shadow: 0 10px 20px rgba(0,0,0,0.5); z-index: 10; }
+        .gallery-item:hover img { filter: grayscale(0%) brightness(1); }
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .address-card {
+            background: var(--card-bg);
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 50px;
+            text-decoration: none;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            transition: var(--transition);
+            backdrop-filter: blur(10px);
+        }
+        .address-card:hover {
+            border-color: var(--accent-color);
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-3px);
+        }
+        .address-icon { font-size: 1.8rem; color: var(--accent-color); }
+        .address-text h4 { font-family: 'Montserrat', sans-serif; font-size: 0.9rem; margin-bottom: 5px; letter-spacing: 1px; }
+        .address-text p { font-size: 0.85rem; line-height: 1.5; opacity: 0.7; }
+
+        .cta-button {
+            display: block; background: var(--accent-color); color: var(--primary-bg);
+            text-decoration: none; padding: 20px; font-family: 'Montserrat', sans-serif;
+            font-weight: 900; border-radius: 8px; transition: var(--transition);
+            text-transform: uppercase; font-size: 1.1rem; text-align: center; margin-bottom: 40px;
+        }
+
+        footer { text-align: center; padding-top: 20px; font-size: 0.7rem; opacity: 0.4; letter-spacing: 2px; }
+
+        .creator-tag {
+            position: fixed; bottom: 10px; right: 15px; font-size: 9px;
+            font-family: 'Montserrat', sans-serif; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 1px; opacity: 0.5; z-index: 100;
+        }
+
+        .reveal { visibility: hidden; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header class="reveal">
+            <h1>FeO<br>TATTO LAB</h1>
+            <p>ART & SOUL | EST. 2026</p>
+        </header>
+
+        <section class="about-box reveal">
+            <p>Mürekkebin sanatla, hijyenin tutkuyla buluştuğu nokta. Her dövme bir hikaye, biz bu hikayeyi derinize işliyoruz.</p>
+        </section>
+
+        <section class="artist-list">
+            <h2 class="reveal">SANATÇILARIMIZ</h2>
+            
+            <div class="artist-card reveal">
+                <img src="img/mamitatto.jpg" class="artist-img" alt="Muammer Doğan">
+                <div class="artist-info">
+                    <h3>Muammer Doğan</h3>
+                    <div class="social-icons">
+                        <a href="https://www.instagram.com/muammerising/"><i class="fab fa-instagram"></i></a>
+                        <a href="https://wa.me/905469024553"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="artist-card reveal">
+                <img src="img/ozer-pp.jpg" class="artist-img" alt="Sanatçı 2">
+                <div class="artist-info">
+                    <h3>Özer Demirok</h3>
+                    <div class="social-icons">
+                        <a href="https://www.instagram.com/demiroxink/"><i class="fab fa-instagram"></i></a>
+                        <a href="https://wa.me/905464049006"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="artist-card reveal">
+                <img src="img/astep-pp.jpg" class="artist-img" alt="Sanatçı 3">
+                <div class="artist-info">
+                    <h3>Ömer Arslan</h3>
+                    <div class="social-icons">
+                        <a href="https://www.instagram.com/astek.inkk/"><i class="fab fa-instagram"></i></a>
+                        <a href="https://wa.me/905406250213"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="works">
+            <h2 class="reveal">ORTAK ÇALIŞMALAR</h2>
+            <div class="gallery-wrapper reveal">
+                <div class="gallery-container">
+                    <div class="gallery-item"><img src="img/mamitatto-1.png" alt="Work"></div>
+                    <div class="gallery-item"><img src="img/dlövme4.jpeg" alt="Work"></div>
+                    <div class="gallery-item"><img src="img/dovme-omer.jpg" alt="Work"></div>
+                    <div class="gallery-item"><img src="img/dövme1.jpeg" alt="Work"></div>
+                    <div class="gallery-item"><img src="img/dövme2.jpeg" alt="Work"></div>
+                    <div class="gallery-item"><img src="img/dövme3.jpeg"  alt="Work"></div>
+                    <div class="gallery-item"><img src="img/dövme5.jpeg" alt="Work"></div>
+                    <div class="gallery-item"><img src="img/dövme6.jpeg" alt="Work"></div>
+                    <div class="gallery-item"><img src="img/dövme7.jpeg" alt="Work"></div>
+                    <div class="gallery-item"><img src="img/dövme8.jpeg" alt="Work"></div>
+                    <div class="gallery-item"><img src="img/dövme9.jpeg" alt="Work"></div>
+                    <div class="gallery-item"><img src="img/dövme10.jpeg" alt="Work"></div>
+                    <div class="gallery-item"><img src="img/mamı-dovme2.jpg" alt="Work"></div>
+                    <div class="gallery-item"><img src="img/mamı-tatto3.jpg" alt="Work"></div>
+                
+
+
+                    <div class="gallery-item"><img src="img/mamitatto-1.png" alt="Work"></div>
+                    <div class="gallery-item"><img src="img/dlövme4.jpeg" alt="Work"></div>
+                    <div class="gallery-item"><img src="img/dovme-omer.jpg" alt="Work"></div>
+                    <div class="gallery-item"><img src="img/dövme1.jpeg" alt="Work"></div>
+                    <div class="gallery-item"><img src="img/dövme2.jpeg" alt="Work"></div>
+                    <div class="gallery-item"><img src="img/dövme3.jpeg"  alt="Work"></div>
+                    <div class="gallery-item"><img src="img/dövme5.jpeg" alt="Work"></div>
+                    <div class="gallery-item"><img src="img/dövme6.jpeg" alt="Work"></div>
+                    <div class="gallery-item"><img src="img/dövme7.jpeg" alt="Work"></div>
+                    <div class="gallery-item"><img src="img/dövme8.jpeg" alt="Work"></div>
+                    <div class="gallery-item"><img src="img/dövme9.jpeg" alt="Work"></div>
+                    <div class="gallery-item"><img src="img/dövme10.jpeg" alt="Work"></div>
+                    <div class="gallery-item"><img src="img/mamı-dovme2.jpg" alt="Work"></div>
+                    <div class="gallery-item"><img src="img/mamı-tatto3.jpg" alt="Work"></div>
+                   
+                    
+
+
+                </div>
+            </div>
+        </section>
+
+        <h2 class="reveal">ADRESİMİZ</h2>
+        <a href="https://maps.google.com/?q=Oğuzlar,1589.Sk.Hukukçular+Plaza+No.20,Etimesgut/Ankara" target="_blank" class="address-card reveal">
+            <div class="address-icon">
+                <i class="fas fa-map-marker-alt"></i>
+            </div>
+            <div class="address-text">
+                <h4>STÜDYO LOKASYON</h4>
+                <p>Oğuzlar, 1589. Sk. Hukukçular Plaza No. 20, Etimesgut/Ankara</p>
+            </div>
+        </a>
+
+
+
+
+
+
+
+    <section class="shop-section">
+    <div class="shop-header reveal">
+        <h2>- İNKHİDE SHOP -</h2>
+        <div class="shop-intro">
+            <p>İNKHİDE SHOP adı altında sizlerin istekleri üzerine özel tasarım ürünler üretiyoruz. Siz de İNKHİDE'lı olmak isterseniz aşağıdaki ürünlerden shopier aracılığı ile güvenle 
+                 satın alabilir veya en sonda ki karta basarak özel ürün isteginizi bize iletebilirsiniz (kargomuz mevcuttur).</p>
+        </div>
+    </div>
+
+    <div class="shop-grid">
+        
+        <a href="https://www.shopier.com/inkhidestudio?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMjU2MjgxMDQwNTU4AAGnjOr_mg0N9i5_JsQr73rTJ2_uqmaj-3Jn3eJxkb6K69NJf4Uj-7rZrF7fsMs_aem_T_rd1vxQJm2n2EFIXv_ExA" class="shop-card reveal">
+            <div class="shop-img-container">
+                <img src="img/ink1.jpeg" alt="İnkhide Tasarım">
+                <div class="shop-badge">ÖZEL TASARIM</div>
+            </div>
+            <div class="shop-info">
+                <h4>AKIŞ</h4>
+                <p>AKIŞ — Sevgililer Günü Özel | Custom Tattoo Deri Çanta</p>
+                <div class="shop-footer">
+                    <span>SATIN AL</span>
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+            </div>
+        </a>
+
+        <a href="https://www.shopier.com/inkhidestudio?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMjU2MjgxMDQwNTU4AAGnjOr_mg0N9i5_JsQr73rTJ2_uqmaj-3Jn3eJxkb6K69NJf4Uj-7rZrF7fsMs_aem_T_rd1vxQJm2n2EFIXv_ExA" class="shop-card reveal">
+            <div class="shop-img-container">
+                <img src="img/ink2.jpeg" alt="İnkhide Tasarım">
+                <div class="shop-badge">ÖZEL TASARIM</div>
+            </div>
+            <div class="shop-info">
+                <h4>EŞLİK</h4>
+                <p>Eşik — Sessiz Yol Koleksiyonu | Custom Tattoo Deri Çanta</p>
+                <div class="shop-footer">
+                    <span>SATIN AL</span>
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+            </div>
+        </a>
+
+        <a href="https://www.shopier.com/inkhidestudio?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMjU2MjgxMDQwNTU4AAGnjOr_mg0N9i5_JsQr73rTJ2_uqmaj-3Jn3eJxkb6K69NJf4Uj-7rZrF7fsMs_aem_T_rd1vxQJm2n2EFIXv_ExA" class="shop-card reveal">
+            <div class="shop-img-container">
+                <img src="img/ink3.jpeg" alt="İnkhide Tasarım">
+                <div class="shop-badge">ÖZEL TASARIM</div>
+            </div>
+            <div class="shop-info">
+                <h4>iç</h4>
+                <p>İÇ — Sevgililer Günü Özel | Custom Tattoo Deri Cüzdan</p>
+                <div class="shop-footer">
+                    <span>SATIN AL</span>
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+            </div>
+        </a>
+
+
+<a href="https://www.shopier.com/inkhidestudio?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMjU2MjgxMDQwNTU4AAGnjOr_mg0N9i5_JsQr73rTJ2_uqmaj-3Jn3eJxkb6K69NJf4Uj-7rZrF7fsMs_aem_T_rd1vxQJm2n2EFIXv_ExA" class="shop-card reveal">
+            <div class="shop-img-container">
+                <img src="img/ink4-ayakkabı.jpeg" alt="İnkhide Tasarım">
+                <div class="shop-badge">ÖZEL TASARIM</div>
+            </div>
+            <div class="shop-info">
+                <h4>VENOM HIS</h4>
+                <p>VENOM HIS Custom Tattoo Sneaker | Nike Air Force 1</p>
+                <div class="shop-footer">
+                    <span>SATIN AL</span>
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+            </div>
+        </a>
+        <a href="https://www.shopier.com/inkhidestudio?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMjU2MjgxMDQwNTU4AAGnjOr_mg0N9i5_JsQr73rTJ2_uqmaj-3Jn3eJxkb6K69NJf4Uj-7rZrF7fsMs_aem_T_rd1vxQJm2n2EFIXv_ExA" class="shop-card reveal">
+            <div class="shop-img-container">
+                <img src="img/ink5.jpeg" alt="İnkhide Tasarım">
+                <div class="shop-badge">ÖZEL TASARIM</div>
+            </div>
+            <div class="shop-info">
+                <h4>SAKLI BAHÇE</h4>
+                <p>Saklı Bahçe — Sessiz Yol Koleksiyonu | Custom Tattoo Deri Çanta</p>
+                <div class="shop-footer">
+                    <span>SATIN AL</span>
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+            </div>
+        </a>
+        <a href="https://wa.me/905464049006" class="shop-card reveal">
+            <div class="shop-img-container">
+                <img src="img/ınkhıdepp.jpg" alt="İnkhide Tasarım">
+                <div class="shop-badge">ÖZEL TASARIM</div>
+            </div>
+            <div class="shop-info">
+                <h4>inkhide iletişim...</h4>
+                <p>Kişiye Özel Tasarım Ürünler</p>
+                <div class="shop-footer">
+                    <span>DETAYLI BİLGİ</span>
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+            </div>
+        </a>
+        </div> </section>
+
+
+
+
+<section class="about-detailed reveal" style="margin-bottom: 50px; padding: 20px; background: var(--card-bg); border-radius: 12px; border: 1px solid rgba(255,255,255,0.05); backdrop-filter: blur(10px);">
+            <h2 style="margin-bottom: 15px;">HİKAYEMİZ</h2>
+            <p style="font-size: 0.9rem; line-height: 1.6; color: rgba(255,255,255,0.7); font-weight: 400; text-transform: none;">
+                Ankara'nın kalbinde, sanatı deriyle buluşturmak için kurulduk. <strong>FeO Tattoo Lab</strong> olarak sadece dövme yapmıyoruz; her çizgide bir karakter, her gölgede bir anı saklıyoruz. 
+                <br><br>
+                Modern ekipmanlarımız, tavizsiz hijyen standartlarımız ve her biri kendi tarzında uzmanlaşmış sanatçılarımızla, hayalinizdeki tasarımı zamansız bir sanat eserine dönüştürüyoruz. Sınırları zorlamayı seviyor, klişelerden uzak, size özel hikayeler yazıyoruz.
+            </p>
+            <div style="display: flex; gap: 15px; margin-top: 20px; opacity: 0.8;">
+                <div style="flex: 1; text-align: center; border-right: 1px solid rgba(255,255,255,0.1);">
+                    <i class="fas fa-shield-virus" style="display: block; margin-bottom: 5px;"></i>
+                    <span style="font-size: 0.65rem; font-family: 'Montserrat'; font-weight: 700; text-transform: uppercase;">%100 Hijyen</span>
+                </div>
+                <div style="flex: 1; text-align: center; border-right: 1px solid rgba(255,255,255,0.1);">
+                    <i class="fas fa-paint-brush" style="display: block; margin-bottom: 5px;"></i>
+                    <span style="font-size: 0.65rem; font-family: 'Montserrat'; font-weight: 700; text-transform: uppercase;">Özel Tasarım</span>
+                </div>
+                <div style="flex: 1; text-align: center;">
+                    <i class="fas fa-gem" style="display: block; margin-bottom: 5px;"></i>
+                    <span style="font-size: 0.65rem; font-family: 'Montserrat'; font-weight: 700; text-transform: uppercase;">Premium Sanat</span>
+                </div>
+            </div>
+        </section>
+        <section class="cta-section reveal">
+            <a href="https://wa.me/905464049006" class="cta-button">WHATSAPP RANDEVU AL</a>
+        </section>
+
+        <footer>© 2026 FeO TATTO LAB | SINCE 2026</footer>
+    </div>
+
+    <div class="creator-tag">CREATED BY MUAMMER DOĞAN</div>
+
+    <script>
+        ScrollReveal().reveal('.reveal', {
+            distance: '50px', duration: 1000, easing: 'cubic-bezier(0.5, 0, 0, 1)',
+            interval: 150, origin: 'bottom', opacity: 0
+        });
+    </script>
+</body>
+</html>
